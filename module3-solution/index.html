@@ -9,18 +9,22 @@
 </head>
 
 <body>
-    <div class="container" ng-controller="NarrowItDownController as list">
+    <div class="container" ng-controller="NarrowItDownController as foundList">
         <h1>Narrow Down Your Chinese Menu Choice</h1>
 
         <div class="form-group">
-            <input ng-model="list.searchTerm" type="text" placeholder="search term" class="form-control">
+            <input ng-model="foundList.searchTerm" type="text" placeholder="search term" class="form-control">
         </div>
         <div class="form-group narrow-button">
-            <button ng-click="list.narrowItDownForMe()" class="btn btn-primary">Narrow It Down For Me!</button>
+            <button ng-click="foundList.narrowItDownForMe()" class="btn btn-primary">Narrow It Down For Me!</button>
         </div>
 
-
         <section>
+            <found-items items="foundList.found" on-remove="foundList.removeItem(index)"></found-items>
+            <span ng-if="foundList.nothingFound">Nothing found</span>
+        </section>
+
+        <!-- <section>
             <ol>
                 <li ng-repeat="item in list.found">
                     {{item.name}}, {{item.short_name}}, {{item.description}}
@@ -29,7 +33,7 @@
 
             </ol>
             <span ng-if="list.nothingFound">Nothing found</span>
-        </section>
+        </section> -->
         <!-- Bonus loader (see Bonus section of the assignment) -->
         <!-- <items-loader-indicator></items-loader-indicator> -->
 

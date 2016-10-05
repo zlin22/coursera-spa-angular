@@ -8,7 +8,11 @@
 
     function FoundItemsDirective() {
         var ddo = {
-            templateUrl: 'found-items.html'
+            templateUrl: 'foundItems.html',
+            scope: {
+              items: '<',
+              onRemove: '&'
+            }
         };
 
         return ddo;
@@ -18,29 +22,29 @@
     NarrowItDownController.$inject = ['MenuSearchService'];
 
     function NarrowItDownController(MenuSearchService) {
-        var list = this;
+        var foundList = this;
 
-        list.searchTerm = '';
-        list.found = '';
-        list.nothingFound = false;
+        foundList.searchTerm = '';
+        foundList.found = '';
+        foundList.nothingFound = false;
 
-        list.narrowItDownForMe = function() {
-            MenuSearchService.getMatchedMenuItems(list.searchTerm).then(
+        foundList.narrowItDownForMe = function() {
+            MenuSearchService.getMatchedMenuItems(foundList.searchTerm).then(
                 function(result) {
-                    if (result.length > 0 && list.searchTerm.length > 0) {
-                        list.found = result;
-                        list.nothingFound = false;
+                    if (result.length > 0 && foundList.searchTerm.length > 0) {
+                        foundList.found = result;
+                        foundList.nothingFound = false;
                         // console.log(list.found)
                     } else {
-                        list.found = '';
-                        list.nothingFound = true;
+                        foundList.found = '';
+                        foundList.nothingFound = true;
                     }
                 }
             )
         };
 
-        list.removeItem = function (itemIndex) {
-          list.found.splice(itemIndex, 1);
+        foundList.removeItem = function(itemIndex) {
+            foundList.found.splice(itemIndex, 1);
         };
     };
 
