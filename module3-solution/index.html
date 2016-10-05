@@ -10,13 +10,13 @@
 
 <body>
     <div class="container" ng-controller="NarrowItDownController as list">
-      <button ng-click="list.narrowItDownForMe()" class="btn btn-primary">Narrow It Down For Me!</button>
         <h1>Narrow Down Your Chinese Menu Choice</h1>
 
         <div class="form-group">
             <input ng-model="list.searchTerm" type="text" placeholder="search term" class="form-control">
         </div>
         <div class="form-group narrow-button">
+            <button ng-click="list.narrowItDownForMe()" class="btn btn-primary">Narrow It Down For Me!</button>
         </div>
 
 
